@@ -13,11 +13,26 @@ from django.contrib.auth.models import AbstractUser, BaseUserManager
 # for authentication, add custom fields to user template, define additional restrictions during user creation, among
 # other customizations.
 class UserManager(BaseUserManager):
+    # Normalize the email address by lowercase the domain part of it.
+    def normalize_email(self, email):
+        email = email or ""
+        try:
+            email_name, domain_part = email.strip().rsplit('@', 1)
+        except ValueError:
+            raise ValueError('O email não possui o padrão correto: email@dominio.com')
+        else:
+            email = email_name.lower() + "@" + domain_part.lower()
+        return email
+
     # The _create_user function is an internal BaseUserManager method used to create a user.
     def _create_user(self, email, password, **extra_fields):
         # Check if the email was provided.
         if not email:
             raise ValueError("O email é obrigatório")
+
+        # Check if the password was provided.
+        if not password:
+            raise ValueError("Senha obrigatória")
 
         # Match the email typed by the user to the right email pattern.
         email = self.normalize_email(email)
@@ -45,13 +60,12 @@ class UserManager(BaseUserManager):
     # The function create_superuser is a public method of BaseUserManager that uses the internal method _create_user
     # to create a superuser with some default values.
     def create_superuser(self, email, password, **extra_fields):
-        # Defines that the user is a staff member.
+        # Defines that the superuser is a staff member.
         extra_fields.setdefault('is_staff', True)
-        # Defines that the user is a superuser member.
+        # Defines that the superuser is a superuser member.
         extra_fields.setdefault('is_superuser', True)
-
-        if extra_fields.get('is_superuser') is not True:
-            raise ValueError("Super usuário não cadastrado")
+        # Defines that the superuser is an active member.
+        extra_fields.setdefault('is_active', True)
 
         return self._create_user(email, password, **extra_fields)
 

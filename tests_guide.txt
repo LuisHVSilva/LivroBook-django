@@ -1,0 +1,21 @@
+# ------------------------------------------------ COVERAGE
+# Instalar a biblioteca coverage
+pip install coverage
+
+# Rodar testes com coverage
+coverage run manage.py test
+
+# Dados de porcentagem de teste
+coverage report
+
+# Criar html com os dados coverage
+coverage run manage.py test
+coverage html
+
+# Rodar arquivo criado na web para verificar
+cd htmlcov
+python3 -m http.server
+
+coverage run manage.py test
+coverage html
+

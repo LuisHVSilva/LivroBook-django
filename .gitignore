@@ -1,2 +1,3 @@
 /db.sqlite3
 /sensitve_data.py
+htmlcov/*
