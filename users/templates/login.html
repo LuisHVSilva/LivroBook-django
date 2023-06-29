@@ -28,9 +28,9 @@
         {% endif %}
         <p class="bold">- OR -</p>
         <div class="loginIcon">
-            <a href="#"><img src="{% static 'icons/facebook.svg' %}" alt="facebook-icon"></a>
-            <a href="#"><img src="{% static 'icons/google.svg' %}" alt="google-icon"></a>
-            <a href="#"><img src="{% static 'icons/apple.svg' %}" alt="apple-icon"></a>
+            <a href="{% url 'social:begin' 'facebook' %}"><img src="{% static 'icons/facebook.svg' %}" alt="facebook-icon"></a>
+            <a href="{% url 'social:begin' 'google-oauth2' %}"><img src="{% static 'icons/google.svg' %}" alt="google-icon"></a>
+            <a href="{% url 'social:begin' 'instagram' %}"><img src="{% static 'icons/instagram.svg' %}" alt="instagram-icon"></a>
         </div>
         <div class="text">
             <p class="registre">Não possui conta? <a href="{% url 'users:register' %}" class="bold">Registre-se!</a></p>
