@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<main id="loginSection">
+
+    <section class="left">
+        <h1 class="bold">LivroBook</h1>
+        <div class="form">
+            <p class="bold">Seja bem vindo de novo</p>
+            <form action="#" method="POST">
+                {% csrf_token %}
+                <label class="bold">{{ form.username.label }}</label>
+                {{ form.username }}
+
+                <label class="bold">{{ form.password.label }}</label>
+                {{ form.password }}
+                <div class="divCenter">
+                    <button type="submit">ENTRAR</button>
+                </div>
+            </form>
+        </div>
+        {% if form.errors %}
+        {% for field in form %}
+        {% for error in field.errors %}
+        <p class="alert bold">{{ error }} </p>
+        {% endfor %}
+        {% endfor %}
+        {% endif %}
+        <p class="bold">- OR -</p>
+        <div class="loginIcon">
+            <a href="#"><img src="{% static 'icons/facebook.svg' %}" alt="facebook-icon"></a>
+            <a href="#"><img src="{% static 'icons/google.svg' %}" alt="google-icon"></a>
+            <a href="#"><img src="{% static 'icons/apple.svg' %}" alt="apple-icon"></a>
+        </div>
+        <div class="text">
+            <p class="registre">Não possui conta? <a href="{% url 'users:register' %}" class="bold">Registre-se!</a></p>
+            <p>Esqueceu a senha? <a href="{% url 'users:password_reset' %}" class="bold">Recupere-a!</a></p>
+        </div>
+    </section>
+    <section class="right">
+        <img src="../img/icon_index.svg" alt="">
+    </section>
+</main>
+{% endblock %}

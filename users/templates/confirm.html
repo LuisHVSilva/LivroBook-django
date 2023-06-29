@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<main id="gridConfirm">
+    <p class="bold confirmTitle">Confirme seu registro</p>
+    <p class="small bold">O código de 6 dígitos foi enviado para seu email</p>
+    <form action="#" method="POST" autocomplete="off" class="divCenter">
+
+        {% csrf_token %}
+        {{ form.key }}
+        {% if form.errors %}
+        <p class="alert bold">Sua chave não corresponde à enviada por E-mail.</p>
+        <p class="alert bold">Favor tentar novamente</p>
+        {% endif %}
+        <div>
+            <button type="submit">CONFIRMAR</button>
+        </div>
+    </form>
+</main>
+{% endblock %}

@@ -1,0 +1,93 @@
+{% extends 'navbar.html' %}
+{% load static %}
+{% block content %}
+<main class="homeData">
+    <section class="table mbotton20">
+        <div>
+            <p class="title text-center mbotton20">Últimos Adicionados</p>
+            <table id="firstTable">
+                <tr>
+                    <th>Nome</th>
+                    <th>Páginas</th>
+                    <th>Início</th>
+                    <th>Fim</th>
+                    <th>Terminado?</th>
+                </tr>
+                {% for a in added %}
+                <tr>
+                    <td>{{ a.title }}</td>
+                    <td>{{ a.npages }}</td>
+                    <td>{{ a.begin|date:"d/m/Y" }}</td>
+                    <td>{{ a.finish|date:"d/m/Y" }}</td>
+                    <td>{{ a.concluded }}</td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+        <div class="mbotton20">
+            <p class="title text-center mbotton20">Lista de desejos</p>
+            <table id="secondTable">
+                <tr>
+                    <th>Nome</th>
+                </tr>
+                {% for w in wish_table %}
+                <tr>
+                    <td>{{ w.title }}</td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </section>
+
+    <section class="statistics mbotton20">
+        <div class="nBooks">
+            <p class="title bold mbotton20">Livros lidos</p>
+            <p class="bold text-center purple">{{ book }}</p>
+        </div>
+
+        <div class="nPages">
+            <p class="title bold mbotton20">Páginas lidas</p>
+            <p class="bold text-center purple">{{ pages }}</p>
+        </div>
+
+        <div class="wishBooks">
+            <p class="title bold mbotton20">Desejados</p>
+            <p class="bold text-center purple">{{ wish_graphic }}</p>
+        </div>
+    </section>
+
+    <section class="graphics">
+        <div class="background">
+            <p class="title bold">Livros lidos por mês</p>
+            <canvas id="nBooks"></canvas>
+        </div>
+        <div class="background">
+            <p class="title bold">Páginas lidos por mês</p>
+            <canvas id="nPages"></canvas>
+        </div>
+    </section>
+    {% for f in finish %}
+    {{ f }}
+    {% endfor %}
+</main>
+<script>
+
+    const nBooksData = []
+    {% for item in nbook %}
+    {% for key, value in item.items %}
+    nBooksData.push({{ value }})
+    {% endfor %}
+    {% endfor %}
+
+    const nPagesData = []
+    {% for item in npages %}
+    {% for key, value in item.items %}
+    nPagesData.push({{ value }})
+    {% endfor %}
+    {% endfor %}
+
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="{% static 'js/canvas.js' %}"></script>
+{% endblock %}

@@ -1,0 +1,57 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="cache-control" content="max-age=0" />
+    <meta http-equiv="cache-control" content="no-cache" />
+    <meta http-equiv="expires" content="0" />
+    <!--CSS-->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <!--Javascript-->
+    <script src="{% static 'js/script.js' %}"></script>
+    <!--FontAwesome-->
+    <script src="https://kit.fontawesome.com/82f797382f.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <nav>
+        <div class="logo_header">
+            <a href="{% url 'book:index' %}" class="logo">
+                <h1 class="bold text-center">LivroBook</h1>
+            </a>
+            <button class="navbar_toggle">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+
+        <ul class="main_nav">
+            <li>
+                <a href="{% url 'book:index' %}" class="nav_links">HOME</a>
+            </li>
+            <li>
+                <a href="{% url 'book:book-register' %}" class="nav_links">REGISTRAR</a>
+            </li>
+            <li>
+                <a href="{% url 'book:book-all' %}" class="nav_links">TODOS</a>
+            </li>
+            <li>
+                <a href="{% url 'book:logout' %}" class="nav_links">SAIR</a>
+            </li>
+        </ul>
+    </nav>
+
+    {% block content %}
+    {% endblock %}
+    <footer>
+        <h1>RODAPÉ</h1>
+    </footer>
+
+    <!--Javascript-->
+    <script src="{% static 'js/endscript.js' %}"></script>
+</body>
+
+</html>

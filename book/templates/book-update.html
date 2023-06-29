@@ -1,0 +1,53 @@
+{% extends 'navbar.html' %}
+{% load static %}
+{% block content %}
+<main id="registerBook">
+    <section class="left">
+        <span class="bold text-center title">{{ title.title }} </span>
+        <form method="POST">
+            {% csrf_token %}
+            <label for="id_title">{{ form.title.label }}*</label>
+            {{ form.title }}
+            <label for="id_edition">{{ form.edition.label }}</label>
+            {{ form.edition }}
+            <label for="id_npages">{{ form.npages.label }}</label>
+            {{ form.npages }}
+            <div class="middle">
+                <div>
+                    <label for="id_begin">{{ form.begin.label }}</label>
+                    {{ form.begin }}
+                </div>
+                <div>
+                    <label for="id_finish">{{ form.finish.label }}</label>
+                    {{ form.finish }}
+                </div>
+            </div>
+            <div class="checkboxmiddle">
+                <label for="id_concluded">{{ form.concluded.label }}</label>
+                {{ form.concluded }}
+            </div>
+            <div class="checkboxmiddle">
+                <label for="id_wish">{{ form.wish.label }}</label>
+                {{ form.wish }}
+            </div>
+            <div class="buttonsMiddle">
+                <button type="submit">ATUALIZAR</button>
+                <button type="submit" name="delete" onclick="deleteFieldRequired()">EXCLUIR</button>
+            </div>
+            {% if form.errors %}
+            {% for field in form %}
+            {% for error in field.errors %}
+            <p class="alert bold">{{ error }} </p>
+            {% endfor %}
+            {% endfor %}
+            {% endif %}
+            <br>
+            <p class="small">* Campos obrigatórios</p>
+        </form>
+    </section>
+
+    <section class="right"><img src="{% static 'icons/remove.svg' %}" alt=""></section>
+</main>
+
+
+{% endblock %}

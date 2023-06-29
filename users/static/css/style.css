@@ -1,0 +1,765 @@
+/* GERAL CONFIGURATION */
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+nav,
+footer {
+    background-color: black;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding: 1% 0;
+}
+
+nav .logo_header button {
+    display: none;
+}
+
+nav .main_nav {
+    display: flex;
+    justify-content: space-between;
+
+    width: 25%;
+
+    list-style: none;
+}
+
+nav .main_nav li {
+    display: inline;
+    color: #ffffff;
+}
+
+nav .main_nav li a {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+nav .main_nav li a:hover {
+    color: #14E0CD;
+}
+
+main {
+    padding: 3%;
+    background-color: #F5F5F5;
+}
+
+
+h1 {
+    font-family: 'Times New Roman', Times, serif;
+    font-style: normal;
+    font-size: 3em;
+    text-align: center;
+
+    color: #E0C141;
+}
+
+a {
+    text-decoration: none;
+    color: #14E0CD;
+}
+
+a:hover,
+a:focus,
+a:active {
+    color: #159488;
+}
+
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+
+form label {
+    margin-top: 20px;
+    margin-bottom: 10px;
+
+    font-weight: 700;
+}
+
+form input {
+    width: 95%;
+    height: 35px;
+    margin-top: 10px;
+    padding: 5px;
+
+    border-width: 0px 1px 2px 1px;
+    border-style: solid;
+    border-color: rgba(224, 193, 65, 0.75);
+    border-radius: 10px;
+
+    filter: drop-shadow(0px 1px 4px rgba(0, 0, 0, 0.25));
+}
+
+form input:focus,
+form input:hover {
+    outline: none;
+    border: 1px solid #14e0cd80;
+}
+
+
+form input:focus,
+form input:hover {
+    outline: none;
+    border: 1px solid #14e0cd80;
+}
+
+form .buttonCenter {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+button {
+    margin-top: 30px;
+
+    width: 100%;
+    height: 35px;
+
+    background: #E0C141;
+    border: none;
+    border-radius: 10px;
+
+    margin-bottom: 30px;
+
+    font-weight: 700;
+}
+
+button:active {
+    border: 1px solid black;
+}
+
+button:hover {
+    background-color: #14e0cd80;
+}
+
+table {
+    border-collapse: collapse;
+    border-radius: 10px;
+
+    margin: auto;
+}
+
+table tr th {
+    font-weight: 700;
+    font-family: 'Times New Roman', Times, serif;
+    text-align: center;
+
+    background-color: #EDA539;
+}
+
+table th,
+table td {
+    padding: 2% 30px;
+    text-align: center;
+}
+
+table tr:nth-child(odd) {
+    background-color: #E0C141;
+}
+
+.bold {
+    font-weight: 700;
+}
+
+.alert {
+    color: red;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.small {
+    font-size: 0.9em;
+}
+
+.title {
+    font-size: 2em;
+    color: #14E0CD;
+    text-align: center;
+}
+
+.justify {
+    text-align: justify;
+}
+
+.mbotton20 {
+    margin-bottom: 20px;
+}
+
+.black {
+    color: black;
+}
+
+.purple {
+    color: #E02ACD;
+}
+
+
+/* ***** BOOK:INDEX ***** */
+
+
+main.homeData section.table {
+    display: flex;
+    justify-content: space-around;
+
+    background-color: white;
+
+    border-collapse: collapse;
+    border: 1px solid #14E0CD;
+    border-radius: 10px;
+    padding: 2% 0;
+}
+
+main.homeData section.statistics {
+    display: flex;
+    justify-content: space-around;
+}
+
+main.homeData section.statistics div.nBooks,
+main.homeData section.statistics div.nPages,
+main.homeData section.statistics div.wishBooks {
+    background-color: white;
+
+    border-collapse: collapse;
+    border: 1px solid #14E0CD;
+    border-radius: 10px;
+
+    padding: 2%;
+}
+
+main.homeData section.statistics div.nBooks .purple,
+main.homeData section.statistics div.nPages .purple,
+main.homeData section.statistics div.wishBooks .purple {
+    font-size: 2em;
+}
+
+main.homeData section.graphics {
+    margin-top: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+main.homeData section.graphics div.background {
+    background-color: white;
+
+    border-collapse: collapse;
+    border: 1px solid #14E0CD;
+    border-radius: 10px;
+
+    padding: 2%;
+}
+
+
+/* ***** BOOK:REGISTER-BOOK ***** */
+
+main#registerBook {
+    display: grid;
+    grid-template-columns: repeat(2, 50%);
+}
+
+main#registerBook .left {
+    grid-column-start: 1;
+    grid-column-end: 2;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+main#registerBook .left .title {
+    color: black;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+main#registerBook .left form {
+    display: flex;
+    justify-content: center;
+}
+
+main#registerBook .left form .middle {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+
+    margin: 20px 0;
+}
+
+main#registerBook .left form .middle input {
+    width: 80%;
+}
+
+main#registerBook .left .checkboxmiddle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin-bottom: 20px;
+}
+
+main#registerBook .left .checkboxmiddle label {
+    margin: 0;
+    width: 100%;
+}
+
+
+main#registerBook .left .buttonsMiddle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+}
+
+
+main#registerBook .left .buttonsMiddle button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+
+    width: 50%;
+    background: #EDA539;
+    border-radius: 10px;
+    border: 1px solid #14E0CD;
+}
+
+main#registerBook .left .buttonsMiddle a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+
+    border-radius: 10px;
+    width: 50%;
+}
+
+main#registerBook .left .buttonsMiddle button:hover,
+main#registerBook .left .buttonsMiddle button:focus {
+    background: #14E0CD;
+}
+
+main#registerBook #right {
+    grid-column-start: 2;
+    grid-column-end: 3;
+    grid-row-start: 2;
+    grid-row-end: 3;
+    width: 100%;
+    height: 90vh;
+
+    background-color: black;
+}
+
+main#registerBook #right img {
+    max-width: 90%;
+    height: auto;
+
+}
+
+/* ***** BOOK:BOOK-ALL ***** */
+main#bookAll {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* ***** USERS:LOGIN ***** */
+
+main#loginSection {
+    display: grid;
+    grid-template-columns: repeat(2, 50%);
+    width: 100vw;
+    height: 100vh;
+    padding: 0;
+}
+
+main#loginSection .left {
+    grid-column-start: 1;
+    grid-column-end: 2;
+
+    align-self: center;
+    justify-self: center;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+main#loginSection .left h1 {
+    margin-bottom: 82px;
+}
+
+main#loginSection .left div.form p {
+    text-align: center;
+    margin-bottom: 10px;
+
+    font-size: 1.5em;
+    color: #14E0CD;
+}
+
+main#loginSection .left .loginIcon {
+    margin: 50px 0;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+
+}
+
+main#loginSection .left .loginIcon a {
+    text-align: center;
+}
+
+main#loginSection .left .loginIcon a img {
+    width: 30%;
+}
+
+main#loginSection .left .text p {
+    margin-bottom: 10px;
+}
+
+
+main#loginSection .right {
+    grid-column-start: 2;
+    grid-column-end: 3;
+
+    align-self: center;
+    justify-self: right;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background-color: #E0C141;
+    width: 80%;
+    height: 100vh;
+}
+
+main#loginSection .right img {
+    max-width: 90%;
+    height: auto;
+
+}
+
+/* ***** USERS:REGISTER ***** */
+
+main#gridRegister {
+    display: grid;
+    grid-template-columns: repeat(2, 50%);
+    width: 100vw;
+    height: 100vh;
+    padding: 0;
+}
+
+main#gridRegister .left {
+    grid-column-start: 1;
+    grid-column-end: 2;
+
+    align-self: center;
+    justify-self: center;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+    width: 80%;
+}
+
+main#gridRegister .left .title {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 3em;
+    color: #E0C141;
+    text-align: left;
+}
+
+main#gridRegister .left form,
+main#gridRegister .left form input {
+    width: 100%;
+}
+
+main#gridRegister .right {
+    grid-column-start: 2;
+    grid-column-end: 3;
+
+    align-self: center;
+    justify-self: center;
+
+    display: flex;
+    justify-content: start;
+    align-items: center;
+}
+
+/* ***** USERS:CONFIRM ***** */
+main#gridConfirm {
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100vw;
+    height: 100vh;
+
+    background-color: #FAFAFA;
+}
+
+main#gridConfirm .confirmTitle {
+    font-size: 3em;
+    color: #14E0CD;
+    text-align: center;
+}
+
+main#gridConfirm p {
+    margin-bottom: 30px;
+}
+
+main#gridConfirm form input {
+    text-align: center;
+    font-size: 2em;
+    margin: 7% 0;
+}
+
+main#gridConfirm form .formError {
+    border: 1px solid red;
+}
+
+/* ***** USERS:PASSWORD-LINK ***** */
+main#gridPassword {
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100vw;
+    height: 100vh;
+
+    background-color: #FAFAFA;
+}
+
+main#gridPassword section {
+    border: 1px solid black;
+    padding: 5%;
+    text-align: center;
+}
+
+main#gridPassword section button {
+    width: 50%;
+}
+
+/* ***** @media ***** */
+
+/**/
+@media (max-width: 1000px) {
+
+    main {
+        padding: 0%;
+    }
+
+    h1 {
+        font-size: 3em;
+    }
+
+    .title {
+        font-size: 1.5em;
+    }
+
+    form label {
+        font-size: 0.8em;
+    }
+
+    /* ***** NAVBAR ***** */
+
+    nav {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+
+        padding: 3%;
+    }
+
+    nav .logo_header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+    }
+
+    nav .logo_header button {
+        display: block;
+        width: 20%;
+
+        font-size: 200%;
+        color: #ffffff;
+        background: transparent;
+        border-color: transparent;
+        transition: all 0.3s linear;
+        cursor: pointer;
+    }
+
+    nav .logo_header button:hover {
+        background-color: transparent;
+    }
+
+    nav .main_nav {
+        display: none;
+    }
+
+    nav ul {
+        padding-left: 10%;
+    }
+
+    nav li {
+        width: 100vw;
+        font-size: 1em;
+        text-align: justify;
+        margin-top: 5%;
+    }
+
+    /* ***** BOOK:INDEX ***** */
+
+    main.homeData section.table {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+    }
+
+    main.homeData section.table {
+        background-color: white;
+
+        border-collapse: collapse;
+        border: 1px solid #14E0CD;
+        border-radius: 10px;
+
+    }
+
+    main.homeData section.table .text-center {
+        margin-top: 10%;
+    }
+
+    main.homeData section.table table {
+        border-collapse: collapse;
+        border-radius: 10px;
+
+        margin: auto;
+    }
+
+    main.homeData section.table table tr th {
+        font-weight: 700;
+        font-family: 'Times New Roman', Times, serif;
+        text-align: center;
+
+        background-color: #EDA539;
+    }
+
+
+    main.homeData section.table table th,
+    main.homeData section.table table td {
+        padding: 2% 30px;
+        text-align: center;
+    }
+
+    main.homeData section.table table tr:nth-child(odd) {
+        background-color: #E0C141;
+    }
+
+    main.homeData section.table #firstTable {
+        width: 93%;
+    }
+
+    main.homeData section.statistics {
+        display: flex;
+        justify-content: space-around;
+    }
+
+    main.homeData section.statistics div.nBooks,
+    main.homeData section.statistics div.nPages,
+    main.homeData section.statistics div.wishBooks {
+        background-color: white;
+
+        border-collapse: collapse;
+        border: 1px solid #14E0CD;
+        border-radius: 10px;
+
+        padding: 1%;
+    }
+
+    main.homeData section.statistics div.nBooks .title,
+    main.homeData section.statistics div.nPages .title,
+    main.homeData section.statistics div.wishBooks .title {
+        font-size: 1.3em;
+    }
+
+    main.homeData section.graphics {
+        margin-top: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+
+        padding: 10px;
+    }
+
+    main.homeData section.graphics div.background {
+        background-color: white;
+
+        border-collapse: collapse;
+        border: 1px solid #14E0CD;
+        border-radius: 10px;
+
+        padding: 2%;
+
+        margin-bottom: 10px;
+    }
+
+
+
+    /* ***** BOOK:REGISTER-BOOK ***** */
+
+    main#registerBook {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    main#registerBook .left span {
+        margin: 10%;
+    }
+
+    /* ***** BOOK:BOOK-ALL ***** */
+    main#bookAll .table {
+        padding: 0 1%;
+        overflow-x: auto;
+    }
+
+    main#bookAll .table table{
+        width: 100%;
+    }
+
+
+    /* ***** USERS:LOGIN ***** */
+
+    main#loginSection,
+    main#gridRegister {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    /* ***** USERS:PASSWORD-LINK ***** */
+    main#gridPassword section {
+        border: none;
+        padding: 10%;
+        text-align: center;
+    }
+}

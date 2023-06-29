@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<main id="gridRegister">
+    <section class="left">
+
+        <p class="bold title">Criar conta</p>
+        <form action="{% url 'users:register' %}" method="POST">
+            {% csrf_token %}
+            <label class="bold">{{ form.email.label }}</label>
+            {{ form.email }}
+            <label class="bold">{{ form.first_name.label }}</label>
+            {{ form.first_name }}
+            <label class="bold">{{ form.last_name.label }}</label>
+            {{ form.last_name }}
+            <label class="bold">{{ form.password1.label }}</label>
+            {{ form.password1 }}
+            <label class="bold">{{ form.password2.label }}</label>
+            {{ form.password2 }}
+            <div class="buttonCenter">
+                <button type="submit" class="bold">CADASTRAR</button>
+            </div>
+            {% for field in form %}
+            {% for error in field.errors %}
+            <p class="alert bold">{{ error }} </p>
+            <p class="alert bold">{{ error.label }} </p>
+            {% endfor %}
+            {% endfor %}
+        </form>
+
+    </section>
+    <section class="right">
+        <img src="{% static 'img/maquina_escrever.png' %}" alt="maquina-de-escrever">
+    </section>
+</main>
+{% endblock %}
