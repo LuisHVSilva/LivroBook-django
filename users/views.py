@@ -9,6 +9,8 @@ page password.
 """
 from django.contrib.auth.tokens import default_token_generator
 from django.contrib.auth.views import PasswordResetConfirmView
+from django.core.exceptions import FieldError
+from django.shortcuts import redirect
 from django.urls import reverse_lazy
 
 from django.contrib.auth import authenticate, login
@@ -39,15 +41,14 @@ def random_key_value():
 
 class LoginView(FormView):
     form_class = AuthenticationForm
+    template_name = 'login.html'
     success_url = reverse_lazy('book:index')
 
     # It is used to determine which templates should be used to render the view.
-    def get_template_names(self):
-        # Check if the user is authenticated (self.request.user.is_authenticated).
-        if self.request.user.is_authenticated:
-            return ['index.html']
-        else:
-            return ['login.html']
+    def get(self, request, *args, **kwargs):
+        if request.user.is_authenticated:
+            return redirect('book:index')
+        return super().get(request, *args, **kwargs)
 
     # The form_valid() method is a standard Django method for when the submitted form is valid.
     def form_valid(self, form):
@@ -100,19 +101,13 @@ class LoginView(FormView):
 class UserRegisterView(CreateView):
     model = User
     form_class = UserRegisterForm
+    template_name = 'register.html'
 
     # It is used to determine which templates should be used to render the view.
-    def get_template_names(self):
-        # Check if the user is authenticated (self.request.user.is_authenticated).
-        if self.request.user.is_authenticated:
-            return ['index.html']
-        else:
-            return ['register.html']
-
-    # The get_success_url() method is used to determine the redirect URL after successful form submission.
-    # Will send to 'confirm' page based on current user pk.
-    def get_success_url(self):
-        return self.object.get_absolute_url()
+    def get(self, request, *args, **kwargs):
+        if request.user.is_authenticated:
+            return redirect('book:index')
+        return super().get(request, *args, **kwargs)
 
     def form_valid(self, form):
         # Save data in the Create User model.
@@ -131,16 +126,44 @@ class UserRegisterView(CreateView):
 
         return super().form_valid(form)
 
+    # The get_success_url() method is used to determine the redirect URL after successful form submission.
+    # Will send to 'confirm' page based on current user pk.
+    def get_success_url(self):
+        return self.object.get_absolute_url()
 
-class ConfirmUserView(UpdateView):
+
+class UserConfirmView(UpdateView):
     model = User
     form_class = UserConfirmForm
     template_name = 'confirm.html'
     success_url = reverse_lazy('book:index')
-
+    """
     def form_valid(self, form):
-        response = super().form_valid(form)
+        key = form.cleaned_data['key']
+        # 3V58BJ
+        try:
+            UserConfirmModel.objects.get(key=key)
+        except FieldError:
+            form.add_error('key', 'A chave não é igual à enviada por e-mail. Favor verificar novamente.')
+            return super().form_invalid(form)
 
+        user = self.get_object()
+        # Set the user's is_active attribute to True.
+        user.is_active = True
+        # Save the user with the changes made.
+        user.save()
+
+        return super().form_valid(form)
+    """
+    def form_valid(self, form):
+        key = form.cleaned_data['key']
+        try:
+            UserConfirmModel.objects.get(key=key)
+        except FieldError:
+            form.add_error('key', 'A chave não é igual à enviada por e-mail. Favor verificar novamente.')
+            return super().form_invalid(form)
+
+        response = super().form_valid(form)
         # Get the user object currently being edited using the method.
         user = self.get_object()
         # Set the user's is_active attribute to True.

@@ -16,6 +16,9 @@ coverage html
 cd htmlcov
 python3 -m http.server
 
+# Rodar tudo no cmd para já carregar os testes, baixar o html e rodar o servidor no diretório certo de testes
 coverage run manage.py test
 coverage html
+cd htmlcov
+python3 -m http.server
 

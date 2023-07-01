@@ -7,15 +7,15 @@
         <p class="bold title">Criar conta</p>
         <form action="{% url 'users:register' %}" method="POST">
             {% csrf_token %}
-            <label class="bold">{{ form.email.label }}</label>
+            <label for="id_email" class="bold">{{ form.email.label }}</label>
             {{ form.email }}
-            <label class="bold">{{ form.first_name.label }}</label>
+            <label for="id_first_name" class="bold">{{ form.first_name.label }}</label>
             {{ form.first_name }}
-            <label class="bold">{{ form.last_name.label }}</label>
+            <label for="id_last_name" class="bold">{{ form.last_name.label }}</label>
             {{ form.last_name }}
-            <label class="bold">{{ form.password1.label }}</label>
+            <label for="id_password1" class="bold">{{ form.password1.label }}</label>
             {{ form.password1 }}
-            <label class="bold">{{ form.password2.label }}</label>
+            <label for="id_password2" class="bold">{{ form.password2.label }}</label>
             {{ form.password2 }}
             <div class="buttonCenter">
                 <button type="submit" class="bold">CADASTRAR</button>

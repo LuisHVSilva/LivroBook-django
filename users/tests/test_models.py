@@ -1,6 +1,6 @@
 from django.test import TestCase
 
-from users.models import User
+from users.models import User, UserConfirmModel
 
 from model_mommy import mommy
 
@@ -57,3 +57,16 @@ class TestUser(TestCase):
 
     def teste_create_user(self):
         self.assertIsNotNone(self.user)
+
+
+class TestUserConfirmModel(TestCase):
+    def setUp(self):
+        self.user = mommy.make('users.User')
+
+    def test_create_model(self):
+        confirm_model = UserConfirmModel.objects.create(user=self.user, key="123456")
+        self.assertIsNotNone(confirm_model)
+        self.assertEquals(confirm_model.user, self.user)
+        self.assertEquals(confirm_model.key, "123456")
+        self.assertIsNotNone(confirm_model.created)
+
