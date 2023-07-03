@@ -9,7 +9,6 @@ page password.
 """
 from django.contrib.auth.tokens import default_token_generator
 from django.contrib.auth.views import PasswordResetConfirmView
-from django.core.exceptions import FieldError
 from django.shortcuts import redirect
 from django.urls import reverse_lazy
 
@@ -65,13 +64,11 @@ class LoginView(FormView):
         if user is not None:
             # Persist a user ID on the backend of the request.
             login(self.request, user)
-
-            # Perform the default form validation behavior and redirect to the success page.
-            return super().form_valid(form)
         else:
             form.add_error(None, 'Credenciais inválidas')
+            return self.form_invalid(form)
 
-        return self.form_invalid(form)
+        return super().form_valid(form)
 
     def form_invalid(self, form):
         # Get the "username" filled in the form.
@@ -137,29 +134,13 @@ class UserConfirmView(UpdateView):
     form_class = UserConfirmForm
     template_name = 'confirm.html'
     success_url = reverse_lazy('book:index')
-    """
-    def form_valid(self, form):
-        key = form.cleaned_data['key']
-        # 3V58BJ
-        try:
-            UserConfirmModel.objects.get(key=key)
-        except FieldError:
-            form.add_error('key', 'A chave não é igual à enviada por e-mail. Favor verificar novamente.')
-            return super().form_invalid(form)
 
-        user = self.get_object()
-        # Set the user's is_active attribute to True.
-        user.is_active = True
-        # Save the user with the changes made.
-        user.save()
-
-        return super().form_valid(form)
-    """
     def form_valid(self, form):
         key = form.cleaned_data['key']
         try:
             UserConfirmModel.objects.get(key=key)
-        except FieldError:
+        # TODO -> ver uma maneira de arrumar esse método dentro do model
+        except UserConfirmModel.DoesNotExist:
             form.add_error('key', 'A chave não é igual à enviada por e-mail. Favor verificar novamente.')
             return super().form_invalid(form)
 
@@ -182,11 +163,9 @@ class PasswordResetView(FormView):
     def form_valid(self, form, *args, **kwargs):
         # Retrieve form input "email".
         email = form.cleaned_data['email']
-        # Retrieve user from User database filtering by email
-        user = User.objects.get(email=email)
 
-        # If the user exists in the database.
-        if user:
+        try:
+            user = User.objects.get(email=email)
             # Base64 encode the primary key and create the UUID64.
             uidb64 = urlsafe_base64_encode(str(user.pk).encode('utf-8'))
             # Create the user token.
@@ -198,7 +177,7 @@ class PasswordResetView(FormView):
             form.send_mail(reset_url)
 
             return super().form_valid(form)
-        else:
+        except User.DoesNotExist:
             form.add_error('email', 'Usuário não encontrado')
 
             return self.form_invalid(form)
