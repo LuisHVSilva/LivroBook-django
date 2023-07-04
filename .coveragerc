@@ -12,3 +12,4 @@ omit =
     */decorators.py
     */migrations/*
     */tests/*
+    */asgi.py

@@ -37,7 +37,7 @@ class UserManager(BaseUserManager):
         # Match the email typed by the user to the right email pattern.
         email = self.normalize_email(email)
         # Defining email as the login method for the user.
-        user = self.model(email=email, username=email, **extra_fields)
+        user = self.model(email=email, **extra_fields)
         # Set and encrypt the password.
         user.set_password(password)
         # Save the customer user model.

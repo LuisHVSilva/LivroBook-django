@@ -139,7 +139,6 @@ class UserConfirmView(UpdateView):
         key = form.cleaned_data['key']
         try:
             UserConfirmModel.objects.get(key=key)
-        # TODO -> ver uma maneira de arrumar esse método dentro do model
         except UserConfirmModel.DoesNotExist:
             form.add_error('key', 'A chave não é igual à enviada por e-mail. Favor verificar novamente.')
             return super().form_invalid(form)

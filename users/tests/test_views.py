@@ -1,4 +1,4 @@
-from django.shortcuts import redirect, resolve_url
+from django.shortcuts import resolve_url
 from django.test import TestCase, RequestFactory
 from django.urls import reverse
 
@@ -10,8 +10,6 @@ from users.views import random_key_value, LoginView, UserRegisterView, UserConfi
 
 import users.tests.constants as constants
 
-
-from django.contrib.auth import authenticate, login
 
 class TestRandomKeyValue(TestCase):
     def test_result(self):
@@ -42,17 +40,6 @@ class TestLoginView(TestCase):
         response = self.client.get(self.login_url)
         self.assertTemplateUsed(response, constants.TEMPLATE_USERS_LOGIN)
         self.assertEqual(response.status_code, 200)
-
-    def test_form_valid(self):
-        # Set up the test client
-        a = self.client.login(username=self.user.email, password=constants.PASSWORD)
-        print('\n\n\n\n')
-        print(a)
-
-        form_data = {
-            'username': constants.EMAIL,
-            'password': constants.PASSWORD
-        }
 
 
 class TestUserRegisterView(TestCase):
